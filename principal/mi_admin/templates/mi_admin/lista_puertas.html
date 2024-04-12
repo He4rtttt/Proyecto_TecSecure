@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de puertas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("https://img.freepik.com/vector-premium/fondo-vector-monocromo-blanco-abstracto-folleto-diseno-folleto-sitio-web-fondo-pantalla-blanco-geometrico-pagina-inicio-presentacion-certificado_249611-5905.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Lista de puertas</h1>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Ubicación</th>
+                        <th>Estado</th>
+                        <th>Fecha de instalación</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for puerta in puertas %}
+                        <tr>
+                            <td>{{ puerta.nombre }}</td>
+                            <td>{{ puerta.ubicacion }}</td>
+                            <td>{{ puerta.estado }}</td>
+                            <td>{{ puerta.fecha_instalacion }}</td>
+                            <td>
+                                <a href="{% url 'mi_admin:editar_puerta' puerta.pk %}" class="btn btn-primary btn-sm">Editar</a>
+                                <a href="{% url 'mi_admin:eliminar_puerta' puerta.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                                <a href="{% url 'mi_admin:puerta_info' puerta.pk %}" class="btn btn-secondary btn-sm">Ver información</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{% url 'mi_admin:nueva_puerta' %}" class="btn btn-success">Agregar nueva puerta</a>
+            <a href="{% url 'mi_admin:pagina_principal' %}" class="btn btn-info">Ir a la página principal</a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
